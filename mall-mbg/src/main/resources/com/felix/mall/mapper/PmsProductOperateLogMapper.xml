@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.felix.mall.mapper.PmsProductOperateLogMapper">
+  <resultMap id="BaseResultMap" type="com.felix.mall.entity.PmsProductOperateLog">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="product_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="price_old" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="price_new" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="sale_price_old" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="sale_price_new" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="gift_point_old" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="gift_point_new" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="use_point_limit_old" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="use_point_limit_new" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="operate_man" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, product_id, price_old, price_new, sale_price_old, sale_price_new, gift_point_old, 
+    gift_point_new, use_point_limit_old, use_point_limit_new, operate_man, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pms_product_operate_log
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pms_product_operate_log
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.felix.mall.entity.PmsProductOperateLog">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into pms_product_operate_log (product_id, price_old, price_new, 
+      sale_price_old, sale_price_new, gift_point_old, 
+      gift_point_new, use_point_limit_old, use_point_limit_new, 
+      operate_man, create_time)
+    values (#{productId,jdbcType=BIGINT}, #{priceOld,jdbcType=DECIMAL}, #{priceNew,jdbcType=DECIMAL}, 
+      #{salePriceOld,jdbcType=DECIMAL}, #{salePriceNew,jdbcType=DECIMAL}, #{giftPointOld,jdbcType=INTEGER}, 
+      #{giftPointNew,jdbcType=INTEGER}, #{usePointLimitOld,jdbcType=INTEGER}, #{usePointLimitNew,jdbcType=INTEGER}, 
+      #{operateMan,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.felix.mall.entity.PmsProductOperateLog">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into pms_product_operate_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="priceOld != null">
+        price_old,
+      </if>
+      <if test="priceNew != null">
+        price_new,
+      </if>
+      <if test="salePriceOld != null">
+        sale_price_old,
+      </if>
+      <if test="salePriceNew != null">
+        sale_price_new,
+      </if>
+      <if test="giftPointOld != null">
+        gift_point_old,
+      </if>
+      <if test="giftPointNew != null">
+        gift_point_new,
+      </if>
+      <if test="usePointLimitOld != null">
+        use_point_limit_old,
+      </if>
+      <if test="usePointLimitNew != null">
+        use_point_limit_new,
+      </if>
+      <if test="operateMan != null">
+        operate_man,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="priceOld != null">
+        #{priceOld,jdbcType=DECIMAL},
+      </if>
+      <if test="priceNew != null">
+        #{priceNew,jdbcType=DECIMAL},
+      </if>
+      <if test="salePriceOld != null">
+        #{salePriceOld,jdbcType=DECIMAL},
+      </if>
+      <if test="salePriceNew != null">
+        #{salePriceNew,jdbcType=DECIMAL},
+      </if>
+      <if test="giftPointOld != null">
+        #{giftPointOld,jdbcType=INTEGER},
+      </if>
+      <if test="giftPointNew != null">
+        #{giftPointNew,jdbcType=INTEGER},
+      </if>
+      <if test="usePointLimitOld != null">
+        #{usePointLimitOld,jdbcType=INTEGER},
+      </if>
+      <if test="usePointLimitNew != null">
+        #{usePointLimitNew,jdbcType=INTEGER},
+      </if>
+      <if test="operateMan != null">
+        #{operateMan,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.felix.mall.entity.PmsProductOperateLog">
+    update pms_product_operate_log
+    <set>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="priceOld != null">
+        price_old = #{priceOld,jdbcType=DECIMAL},
+      </if>
+      <if test="priceNew != null">
+        price_new = #{priceNew,jdbcType=DECIMAL},
+      </if>
+      <if test="salePriceOld != null">
+        sale_price_old = #{salePriceOld,jdbcType=DECIMAL},
+      </if>
+      <if test="salePriceNew != null">
+        sale_price_new = #{salePriceNew,jdbcType=DECIMAL},
+      </if>
+      <if test="giftPointOld != null">
+        gift_point_old = #{giftPointOld,jdbcType=INTEGER},
+      </if>
+      <if test="giftPointNew != null">
+        gift_point_new = #{giftPointNew,jdbcType=INTEGER},
+      </if>
+      <if test="usePointLimitOld != null">
+        use_point_limit_old = #{usePointLimitOld,jdbcType=INTEGER},
+      </if>
+      <if test="usePointLimitNew != null">
+        use_point_limit_new = #{usePointLimitNew,jdbcType=INTEGER},
+      </if>
+      <if test="operateMan != null">
+        operate_man = #{operateMan,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.felix.mall.entity.PmsProductOperateLog">
+    update pms_product_operate_log
+    set product_id = #{productId,jdbcType=BIGINT},
+      price_old = #{priceOld,jdbcType=DECIMAL},
+      price_new = #{priceNew,jdbcType=DECIMAL},
+      sale_price_old = #{salePriceOld,jdbcType=DECIMAL},
+      sale_price_new = #{salePriceNew,jdbcType=DECIMAL},
+      gift_point_old = #{giftPointOld,jdbcType=INTEGER},
+      gift_point_new = #{giftPointNew,jdbcType=INTEGER},
+      use_point_limit_old = #{usePointLimitOld,jdbcType=INTEGER},
+      use_point_limit_new = #{usePointLimitNew,jdbcType=INTEGER},
+      operate_man = #{operateMan,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

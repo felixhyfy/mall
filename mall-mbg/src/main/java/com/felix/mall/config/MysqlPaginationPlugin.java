@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * @author Felix
- * @packageName com.felix.mall.config 自动生成带分页插件
+ * @packageName com.felix.mall.com.felix.mall.config 自动生成带分页插件
  * @className MysqlPaginationPlugin
  * @description
  * @date 2021/1/9 20:01

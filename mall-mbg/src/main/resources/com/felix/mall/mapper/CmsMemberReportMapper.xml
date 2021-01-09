@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.felix.mall.mapper.CmsMemberReportMapper">
+  <resultMap id="BaseResultMap" type="com.felix.mall.entity.CmsMemberReport">
+    <constructor>
+      <arg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="report_type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="report_member_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="report_object" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="report_status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="handle_status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="note" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <insert id="insert" parameterType="com.felix.mall.entity.CmsMemberReport">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into cms_member_report (report_type, report_member_name, create_time, 
+      report_object, report_status, handle_status, 
+      note)
+    values (#{reportType,jdbcType=INTEGER}, #{reportMemberName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{reportObject,jdbcType=VARCHAR}, #{reportStatus,jdbcType=INTEGER}, #{handleStatus,jdbcType=INTEGER}, 
+      #{note,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.felix.mall.entity.CmsMemberReport">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into cms_member_report
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="reportType != null">
+        report_type,
+      </if>
+      <if test="reportMemberName != null">
+        report_member_name,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="reportObject != null">
+        report_object,
+      </if>
+      <if test="reportStatus != null">
+        report_status,
+      </if>
+      <if test="handleStatus != null">
+        handle_status,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="reportType != null">
+        #{reportType,jdbcType=INTEGER},
+      </if>
+      <if test="reportMemberName != null">
+        #{reportMemberName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reportObject != null">
+        #{reportObject,jdbcType=VARCHAR},
+      </if>
+      <if test="reportStatus != null">
+        #{reportStatus,jdbcType=INTEGER},
+      </if>
+      <if test="handleStatus != null">
+        #{handleStatus,jdbcType=INTEGER},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

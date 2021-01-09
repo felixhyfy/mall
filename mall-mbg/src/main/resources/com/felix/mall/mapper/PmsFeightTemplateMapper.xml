@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.felix.mall.mapper.PmsFeightTemplateMapper">
+  <resultMap id="BaseResultMap" type="com.felix.mall.entity.PmsFeightTemplate">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="charge_type" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="first_weight" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="first_fee" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="continue_weight" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="continme_fee" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="dest" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, charge_type, first_weight, first_fee, continue_weight, continme_fee, dest
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pms_feight_template
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pms_feight_template
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.felix.mall.entity.PmsFeightTemplate">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into pms_feight_template (name, charge_type, first_weight, 
+      first_fee, continue_weight, continme_fee, 
+      dest)
+    values (#{name,jdbcType=VARCHAR}, #{chargeType,jdbcType=INTEGER}, #{firstWeight,jdbcType=DECIMAL}, 
+      #{firstFee,jdbcType=DECIMAL}, #{continueWeight,jdbcType=DECIMAL}, #{continmeFee,jdbcType=DECIMAL}, 
+      #{dest,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.felix.mall.entity.PmsFeightTemplate">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into pms_feight_template
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="chargeType != null">
+        charge_type,
+      </if>
+      <if test="firstWeight != null">
+        first_weight,
+      </if>
+      <if test="firstFee != null">
+        first_fee,
+      </if>
+      <if test="continueWeight != null">
+        continue_weight,
+      </if>
+      <if test="continmeFee != null">
+        continme_fee,
+      </if>
+      <if test="dest != null">
+        dest,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeType != null">
+        #{chargeType,jdbcType=INTEGER},
+      </if>
+      <if test="firstWeight != null">
+        #{firstWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="firstFee != null">
+        #{firstFee,jdbcType=DECIMAL},
+      </if>
+      <if test="continueWeight != null">
+        #{continueWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="continmeFee != null">
+        #{continmeFee,jdbcType=DECIMAL},
+      </if>
+      <if test="dest != null">
+        #{dest,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.felix.mall.entity.PmsFeightTemplate">
+    update pms_feight_template
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="chargeType != null">
+        charge_type = #{chargeType,jdbcType=INTEGER},
+      </if>
+      <if test="firstWeight != null">
+        first_weight = #{firstWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="firstFee != null">
+        first_fee = #{firstFee,jdbcType=DECIMAL},
+      </if>
+      <if test="continueWeight != null">
+        continue_weight = #{continueWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="continmeFee != null">
+        continme_fee = #{continmeFee,jdbcType=DECIMAL},
+      </if>
+      <if test="dest != null">
+        dest = #{dest,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.felix.mall.entity.PmsFeightTemplate">
+    update pms_feight_template
+    set name = #{name,jdbcType=VARCHAR},
+      charge_type = #{chargeType,jdbcType=INTEGER},
+      first_weight = #{firstWeight,jdbcType=DECIMAL},
+      first_fee = #{firstFee,jdbcType=DECIMAL},
+      continue_weight = #{continueWeight,jdbcType=DECIMAL},
+      continme_fee = #{continmeFee,jdbcType=DECIMAL},
+      dest = #{dest,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

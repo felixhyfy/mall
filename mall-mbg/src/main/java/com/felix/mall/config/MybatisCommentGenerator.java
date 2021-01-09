@@ -8,23 +8,24 @@ import org.mybatis.generator.api.dom.java.TopLevelClass;
 import org.mybatis.generator.internal.DefaultCommentGenerator;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 
 /**
  * @author Felix
  * @packageName com.felix.mall
- * @className MybatisGenerator 配置注释
+ * @className MybatisCommentGenerator 配置注释
  * @description
  * @date 2021/1/9 19:57
  */
-public class MybatisGenerator extends DefaultCommentGenerator {
+public class MybatisCommentGenerator extends DefaultCommentGenerator {
     private Properties properties;
     private Properties systemPro;
     private boolean suppressDate;
     private boolean suppressAllComments;
     private String currentDateStr;
 
-    public MybatisGenerator() {
+    public MybatisCommentGenerator() {
         super();
         properties = new Properties();
         systemPro = System.getProperties();

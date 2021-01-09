@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.felix.mall.mapper.OmsOrderReturnApplyMapper">
+  <resultMap id="BaseResultMap" type="com.felix.mall.entity.OmsOrderReturnApply">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="order_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="company_address_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="product_id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="order_sn" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="member_username" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="return_amount" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="return_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="return_phone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="handle_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="product_pic" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="product_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="product_brand" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="product_attr" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="product_count" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="product_price" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="product_real_price" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+      <arg column="reason" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="description" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="proof_pics" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="handle_note" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="handle_man" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receive_man" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="receive_time" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="receive_note" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_id, company_address_id, product_id, order_sn, create_time, member_username, 
+    return_amount, return_name, return_phone, status, handle_time, product_pic, product_name, 
+    product_brand, product_attr, product_count, product_price, product_real_price, reason, 
+    description, proof_pics, handle_note, handle_man, receive_man, receive_time, receive_note
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from oms_order_return_apply
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from oms_order_return_apply
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.felix.mall.entity.OmsOrderReturnApply">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into oms_order_return_apply (order_id, company_address_id, product_id, 
+      order_sn, create_time, member_username, 
+      return_amount, return_name, return_phone, 
+      status, handle_time, product_pic, 
+      product_name, product_brand, product_attr, 
+      product_count, product_price, product_real_price, 
+      reason, description, proof_pics, 
+      handle_note, handle_man, receive_man, 
+      receive_time, receive_note)
+    values (#{orderId,jdbcType=BIGINT}, #{companyAddressId,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, 
+      #{orderSn,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{memberUsername,jdbcType=VARCHAR}, 
+      #{returnAmount,jdbcType=DECIMAL}, #{returnName,jdbcType=VARCHAR}, #{returnPhone,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{handleTime,jdbcType=TIMESTAMP}, #{productPic,jdbcType=VARCHAR}, 
+      #{productName,jdbcType=VARCHAR}, #{productBrand,jdbcType=VARCHAR}, #{productAttr,jdbcType=VARCHAR}, 
+      #{productCount,jdbcType=INTEGER}, #{productPrice,jdbcType=DECIMAL}, #{productRealPrice,jdbcType=DECIMAL}, 
+      #{reason,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{proofPics,jdbcType=VARCHAR}, 
+      #{handleNote,jdbcType=VARCHAR}, #{handleMan,jdbcType=VARCHAR}, #{receiveMan,jdbcType=VARCHAR}, 
+      #{receiveTime,jdbcType=TIMESTAMP}, #{receiveNote,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.felix.mall.entity.OmsOrderReturnApply">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into oms_order_return_apply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="companyAddressId != null">
+        company_address_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="orderSn != null">
+        order_sn,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="memberUsername != null">
+        member_username,
+      </if>
+      <if test="returnAmount != null">
+        return_amount,
+      </if>
+      <if test="returnName != null">
+        return_name,
+      </if>
+      <if test="returnPhone != null">
+        return_phone,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="handleTime != null">
+        handle_time,
+      </if>
+      <if test="productPic != null">
+        product_pic,
+      </if>
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="productBrand != null">
+        product_brand,
+      </if>
+      <if test="productAttr != null">
+        product_attr,
+      </if>
+      <if test="productCount != null">
+        product_count,
+      </if>
+      <if test="productPrice != null">
+        product_price,
+      </if>
+      <if test="productRealPrice != null">
+        product_real_price,
+      </if>
+      <if test="reason != null">
+        reason,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="proofPics != null">
+        proof_pics,
+      </if>
+      <if test="handleNote != null">
+        handle_note,
+      </if>
+      <if test="handleMan != null">
+        handle_man,
+      </if>
+      <if test="receiveMan != null">
+        receive_man,
+      </if>
+      <if test="receiveTime != null">
+        receive_time,
+      </if>
+      <if test="receiveNote != null">
+        receive_note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="companyAddressId != null">
+        #{companyAddressId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="orderSn != null">
+        #{orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberUsername != null">
+        #{memberUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="returnAmount != null">
+        #{returnAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="returnName != null">
+        #{returnName,jdbcType=VARCHAR},
+      </if>
+      <if test="returnPhone != null">
+        #{returnPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="handleTime != null">
+        #{handleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productPic != null">
+        #{productPic,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productBrand != null">
+        #{productBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="productAttr != null">
+        #{productAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="productCount != null">
+        #{productCount,jdbcType=INTEGER},
+      </if>
+      <if test="productPrice != null">
+        #{productPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="productRealPrice != null">
+        #{productRealPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="reason != null">
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="proofPics != null">
+        #{proofPics,jdbcType=VARCHAR},
+      </if>
+      <if test="handleNote != null">
+        #{handleNote,jdbcType=VARCHAR},
+      </if>
+      <if test="handleMan != null">
+        #{handleMan,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveMan != null">
+        #{receiveMan,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveTime != null">
+        #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveNote != null">
+        #{receiveNote,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.felix.mall.entity.OmsOrderReturnApply">
+    update oms_order_return_apply
+    <set>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="companyAddressId != null">
+        company_address_id = #{companyAddressId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="orderSn != null">
+        order_sn = #{orderSn,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="memberUsername != null">
+        member_username = #{memberUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="returnAmount != null">
+        return_amount = #{returnAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="returnName != null">
+        return_name = #{returnName,jdbcType=VARCHAR},
+      </if>
+      <if test="returnPhone != null">
+        return_phone = #{returnPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="handleTime != null">
+        handle_time = #{handleTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productPic != null">
+        product_pic = #{productPic,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productBrand != null">
+        product_brand = #{productBrand,jdbcType=VARCHAR},
+      </if>
+      <if test="productAttr != null">
+        product_attr = #{productAttr,jdbcType=VARCHAR},
+      </if>
+      <if test="productCount != null">
+        product_count = #{productCount,jdbcType=INTEGER},
+      </if>
+      <if test="productPrice != null">
+        product_price = #{productPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="productRealPrice != null">
+        product_real_price = #{productRealPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="reason != null">
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="proofPics != null">
+        proof_pics = #{proofPics,jdbcType=VARCHAR},
+      </if>
+      <if test="handleNote != null">
+        handle_note = #{handleNote,jdbcType=VARCHAR},
+      </if>
+      <if test="handleMan != null">
+        handle_man = #{handleMan,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveMan != null">
+        receive_man = #{receiveMan,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveTime != null">
+        receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receiveNote != null">
+        receive_note = #{receiveNote,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.felix.mall.entity.OmsOrderReturnApply">
+    update oms_order_return_apply
+    set order_id = #{orderId,jdbcType=BIGINT},
+      company_address_id = #{companyAddressId,jdbcType=BIGINT},
+      product_id = #{productId,jdbcType=BIGINT},
+      order_sn = #{orderSn,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      member_username = #{memberUsername,jdbcType=VARCHAR},
+      return_amount = #{returnAmount,jdbcType=DECIMAL},
+      return_name = #{returnName,jdbcType=VARCHAR},
+      return_phone = #{returnPhone,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      handle_time = #{handleTime,jdbcType=TIMESTAMP},
+      product_pic = #{productPic,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_brand = #{productBrand,jdbcType=VARCHAR},
+      product_attr = #{productAttr,jdbcType=VARCHAR},
+      product_count = #{productCount,jdbcType=INTEGER},
+      product_price = #{productPrice,jdbcType=DECIMAL},
+      product_real_price = #{productRealPrice,jdbcType=DECIMAL},
+      reason = #{reason,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      proof_pics = #{proofPics,jdbcType=VARCHAR},
+      handle_note = #{handleNote,jdbcType=VARCHAR},
+      handle_man = #{handleMan,jdbcType=VARCHAR},
+      receive_man = #{receiveMan,jdbcType=VARCHAR},
+      receive_time = #{receiveTime,jdbcType=TIMESTAMP},
+      receive_note = #{receiveNote,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

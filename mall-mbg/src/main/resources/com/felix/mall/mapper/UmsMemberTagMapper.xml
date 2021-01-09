@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.felix.mall.mapper.UmsMemberTagMapper">
+  <resultMap id="BaseResultMap" type="com.felix.mall.entity.UmsMemberTag">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Long" jdbcType="BIGINT" />
+      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="finish_order_count" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="finish_order_amount" javaType="java.math.BigDecimal" jdbcType="DECIMAL" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, finish_order_count, finish_order_amount
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ums_member_tag
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ums_member_tag
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.felix.mall.entity.UmsMemberTag">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into ums_member_tag (name, finish_order_count, finish_order_amount
+      )
+    values (#{name,jdbcType=VARCHAR}, #{finishOrderCount,jdbcType=INTEGER}, #{finishOrderAmount,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.felix.mall.entity.UmsMemberTag">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into ums_member_tag
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        name,
+      </if>
+      <if test="finishOrderCount != null">
+        finish_order_count,
+      </if>
+      <if test="finishOrderAmount != null">
+        finish_order_amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="finishOrderCount != null">
+        #{finishOrderCount,jdbcType=INTEGER},
+      </if>
+      <if test="finishOrderAmount != null">
+        #{finishOrderAmount,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.felix.mall.entity.UmsMemberTag">
+    update ums_member_tag
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="finishOrderCount != null">
+        finish_order_count = #{finishOrderCount,jdbcType=INTEGER},
+      </if>
+      <if test="finishOrderAmount != null">
+        finish_order_amount = #{finishOrderAmount,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.felix.mall.entity.UmsMemberTag">
+    update ums_member_tag
+    set name = #{name,jdbcType=VARCHAR},
+      finish_order_count = #{finishOrderCount,jdbcType=INTEGER},
+      finish_order_amount = #{finishOrderAmount,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
