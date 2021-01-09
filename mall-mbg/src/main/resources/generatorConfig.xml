@@ -15,8 +15,8 @@
             <property name="addRemarkComments" value="true"/>
         </commentGenerator>
         <!--jdbc的数据库连接 wg_insert 为数据库名字-->
-        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://39.101.142.159:3306/mall?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull&amp;useSSL=true&amp;serverTimezone=GMT%2B8"
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://39.101.142.159:3306/mall?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=GMT%2B8"
                         userId="root"
                         password="123456"></jdbcConnection>
         <!--非必须，类型处理器，在数据库类型和java类型之间的转换控制-->
@@ -29,7 +29,7 @@
         <!-- targetPackage：生成的实体类所在的包 -->
         <!-- targetProject：生成的实体类所在的硬盘位置 -->
         <javaModelGenerator targetPackage="com.felix.mall.entity"
-                            targetProject="src/main/java">
+                            targetProject="mall-mbg/src/main/java">
             <!-- 是否允许子包 -->
             <property name="enableSubPackages" value="false"/>
             <!-- 是否对modal添加构造函数 -->
@@ -40,14 +40,15 @@
             <property name="immutable" value="false"/>
         </javaModelGenerator>
         <!-- targetPackage 和 targetProject：生成的 mapper 文件的包和位置 -->
-        <sqlMapGenerator targetPackage="mapper"
-                         targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="com.felix.mall.mapper"
+                         targetProject="mall-mbg/src/main/resources">
             <!-- 针对数据库的一个配置，是否把 schema 作为字包名 -->
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
         <!-- targetPackage 和 targetProject：生成的 interface 文件的包和位置 -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.felix.mall.mapper" targetProject="src/main/java">
+                             targetPackage="com.felix.mall.mapper"
+                             targetProject="mall-mbg/src/main/java">
             <!-- 针对 oracle 数据库的一个配置，是否把 schema 作为字包名 -->
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
