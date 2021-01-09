@@ -28,4 +28,4 @@ hs_err_pid*
 # .idea file
 .idea
 
-git rm --cached -r .idea
+git rm --cached -r logs
