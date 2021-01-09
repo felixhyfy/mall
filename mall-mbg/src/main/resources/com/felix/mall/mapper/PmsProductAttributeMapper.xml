@@ -17,82 +17,10 @@
       <arg column="type" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
     id, product_attribute_category_id, name, select_type, input_type, input_list, sort, 
     filter_type, search_type, related_status, hand_add_status, type
   </sql>
-  <select id="selectByExample" parameterType="com.felix.mall.entity.PmsProductAttributeExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from pms_product_attribute
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -102,12 +30,6 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from pms_product_attribute
     where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.felix.mall.entity.PmsProductAttributeExample">
-    delete from pms_product_attribute
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
   </delete>
   <insert id="insert" parameterType="com.felix.mall.entity.PmsProductAttribute">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -200,74 +122,6 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.felix.mall.entity.PmsProductAttributeExample" resultType="java.lang.Long">
-    select count(*) from pms_product_attribute
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update pms_product_attribute
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.productAttributeCategoryId != null">
-        product_attribute_category_id = #{record.productAttributeCategoryId,jdbcType=BIGINT},
-      </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.selectType != null">
-        select_type = #{record.selectType,jdbcType=INTEGER},
-      </if>
-      <if test="record.inputType != null">
-        input_type = #{record.inputType,jdbcType=INTEGER},
-      </if>
-      <if test="record.inputList != null">
-        input_list = #{record.inputList,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sort != null">
-        sort = #{record.sort,jdbcType=INTEGER},
-      </if>
-      <if test="record.filterType != null">
-        filter_type = #{record.filterType,jdbcType=INTEGER},
-      </if>
-      <if test="record.searchType != null">
-        search_type = #{record.searchType,jdbcType=INTEGER},
-      </if>
-      <if test="record.relatedStatus != null">
-        related_status = #{record.relatedStatus,jdbcType=INTEGER},
-      </if>
-      <if test="record.handAddStatus != null">
-        hand_add_status = #{record.handAddStatus,jdbcType=INTEGER},
-      </if>
-      <if test="record.type != null">
-        type = #{record.type,jdbcType=INTEGER},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update pms_product_attribute
-    set id = #{record.id,jdbcType=BIGINT},
-      product_attribute_category_id = #{record.productAttributeCategoryId,jdbcType=BIGINT},
-      name = #{record.name,jdbcType=VARCHAR},
-      select_type = #{record.selectType,jdbcType=INTEGER},
-      input_type = #{record.inputType,jdbcType=INTEGER},
-      input_list = #{record.inputList,jdbcType=VARCHAR},
-      sort = #{record.sort,jdbcType=INTEGER},
-      filter_type = #{record.filterType,jdbcType=INTEGER},
-      search_type = #{record.searchType,jdbcType=INTEGER},
-      related_status = #{record.relatedStatus,jdbcType=INTEGER},
-      hand_add_status = #{record.handAddStatus,jdbcType=INTEGER},
-      type = #{record.type,jdbcType=INTEGER}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.felix.mall.entity.PmsProductAttribute">
     update pms_product_attribute
     <set>

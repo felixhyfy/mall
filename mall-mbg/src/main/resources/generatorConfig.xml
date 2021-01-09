@@ -54,7 +54,12 @@
         </javaClientGenerator>
         <!-- tableName是数据库中的表名，domainObjectName是生成的JAVA模型名，后面的参数不用改，要生成更多的表就在下面继续加table标签 -->
         <!-- 生成全部表tableName为%-->
-        <table tableName="%">
+        <table tableName="%"
+               enableCountByExample="false"
+        enableDeleteByExample="false"
+        enableSelectByExample="false"
+        enableUpdateByExample="false"
+        selectByExampleQueryId="false">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
     </context>

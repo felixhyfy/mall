@@ -32,84 +32,12 @@
       <arg column="receive_note" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
     id, order_id, company_address_id, product_id, order_sn, create_time, member_username, 
     return_amount, return_name, return_phone, status, handle_time, product_pic, product_name, 
     product_brand, product_attr, product_count, product_price, product_real_price, reason, 
     description, proof_pics, handle_note, handle_man, receive_man, receive_time, receive_note
   </sql>
-  <select id="selectByExample" parameterType="com.felix.mall.entity.OmsOrderReturnApplyExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from oms_order_return_apply
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -119,12 +47,6 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from oms_order_return_apply
     where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.felix.mall.entity.OmsOrderReturnApplyExample">
-    delete from oms_order_return_apply
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
   </delete>
   <insert id="insert" parameterType="com.felix.mall.entity.OmsOrderReturnApply">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -315,134 +237,6 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.felix.mall.entity.OmsOrderReturnApplyExample" resultType="java.lang.Long">
-    select count(*) from oms_order_return_apply
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update oms_order_return_apply
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.orderId != null">
-        order_id = #{record.orderId,jdbcType=BIGINT},
-      </if>
-      <if test="record.companyAddressId != null">
-        company_address_id = #{record.companyAddressId,jdbcType=BIGINT},
-      </if>
-      <if test="record.productId != null">
-        product_id = #{record.productId,jdbcType=BIGINT},
-      </if>
-      <if test="record.orderSn != null">
-        order_sn = #{record.orderSn,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.memberUsername != null">
-        member_username = #{record.memberUsername,jdbcType=VARCHAR},
-      </if>
-      <if test="record.returnAmount != null">
-        return_amount = #{record.returnAmount,jdbcType=DECIMAL},
-      </if>
-      <if test="record.returnName != null">
-        return_name = #{record.returnName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.returnPhone != null">
-        return_phone = #{record.returnPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="record.status != null">
-        status = #{record.status,jdbcType=INTEGER},
-      </if>
-      <if test="record.handleTime != null">
-        handle_time = #{record.handleTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.productPic != null">
-        product_pic = #{record.productPic,jdbcType=VARCHAR},
-      </if>
-      <if test="record.productName != null">
-        product_name = #{record.productName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.productBrand != null">
-        product_brand = #{record.productBrand,jdbcType=VARCHAR},
-      </if>
-      <if test="record.productAttr != null">
-        product_attr = #{record.productAttr,jdbcType=VARCHAR},
-      </if>
-      <if test="record.productCount != null">
-        product_count = #{record.productCount,jdbcType=INTEGER},
-      </if>
-      <if test="record.productPrice != null">
-        product_price = #{record.productPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="record.productRealPrice != null">
-        product_real_price = #{record.productRealPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="record.reason != null">
-        reason = #{record.reason,jdbcType=VARCHAR},
-      </if>
-      <if test="record.description != null">
-        description = #{record.description,jdbcType=VARCHAR},
-      </if>
-      <if test="record.proofPics != null">
-        proof_pics = #{record.proofPics,jdbcType=VARCHAR},
-      </if>
-      <if test="record.handleNote != null">
-        handle_note = #{record.handleNote,jdbcType=VARCHAR},
-      </if>
-      <if test="record.handleMan != null">
-        handle_man = #{record.handleMan,jdbcType=VARCHAR},
-      </if>
-      <if test="record.receiveMan != null">
-        receive_man = #{record.receiveMan,jdbcType=VARCHAR},
-      </if>
-      <if test="record.receiveTime != null">
-        receive_time = #{record.receiveTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.receiveNote != null">
-        receive_note = #{record.receiveNote,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update oms_order_return_apply
-    set id = #{record.id,jdbcType=BIGINT},
-      order_id = #{record.orderId,jdbcType=BIGINT},
-      company_address_id = #{record.companyAddressId,jdbcType=BIGINT},
-      product_id = #{record.productId,jdbcType=BIGINT},
-      order_sn = #{record.orderSn,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      member_username = #{record.memberUsername,jdbcType=VARCHAR},
-      return_amount = #{record.returnAmount,jdbcType=DECIMAL},
-      return_name = #{record.returnName,jdbcType=VARCHAR},
-      return_phone = #{record.returnPhone,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=INTEGER},
-      handle_time = #{record.handleTime,jdbcType=TIMESTAMP},
-      product_pic = #{record.productPic,jdbcType=VARCHAR},
-      product_name = #{record.productName,jdbcType=VARCHAR},
-      product_brand = #{record.productBrand,jdbcType=VARCHAR},
-      product_attr = #{record.productAttr,jdbcType=VARCHAR},
-      product_count = #{record.productCount,jdbcType=INTEGER},
-      product_price = #{record.productPrice,jdbcType=DECIMAL},
-      product_real_price = #{record.productRealPrice,jdbcType=DECIMAL},
-      reason = #{record.reason,jdbcType=VARCHAR},
-      description = #{record.description,jdbcType=VARCHAR},
-      proof_pics = #{record.proofPics,jdbcType=VARCHAR},
-      handle_note = #{record.handleNote,jdbcType=VARCHAR},
-      handle_man = #{record.handleMan,jdbcType=VARCHAR},
-      receive_man = #{record.receiveMan,jdbcType=VARCHAR},
-      receive_time = #{record.receiveTime,jdbcType=TIMESTAMP},
-      receive_note = #{record.receiveNote,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.felix.mall.entity.OmsOrderReturnApply">
     update oms_order_return_apply
     <set>

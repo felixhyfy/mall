@@ -23,83 +23,11 @@
       <arg column="product_attr" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
     id, product_id, product_sku_id, member_id, quantity, price, product_pic, product_name, 
     product_sub_title, product_sku_code, member_nickname, create_date, modify_date, delete_status, 
     product_category_id, product_brand, product_sn, product_attr
   </sql>
-  <select id="selectByExample" parameterType="com.felix.mall.entity.OmsCartItemExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from oms_cart_item
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -109,12 +37,6 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from oms_cart_item
     where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.felix.mall.entity.OmsCartItemExample">
-    delete from oms_cart_item
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
   </delete>
   <insert id="insert" parameterType="com.felix.mall.entity.OmsCartItem">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -245,98 +167,6 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.felix.mall.entity.OmsCartItemExample" resultType="java.lang.Long">
-    select count(*) from oms_cart_item
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update oms_cart_item
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.productId != null">
-        product_id = #{record.productId,jdbcType=BIGINT},
-      </if>
-      <if test="record.productSkuId != null">
-        product_sku_id = #{record.productSkuId,jdbcType=BIGINT},
-      </if>
-      <if test="record.memberId != null">
-        member_id = #{record.memberId,jdbcType=BIGINT},
-      </if>
-      <if test="record.quantity != null">
-        quantity = #{record.quantity,jdbcType=INTEGER},
-      </if>
-      <if test="record.price != null">
-        price = #{record.price,jdbcType=DECIMAL},
-      </if>
-      <if test="record.productPic != null">
-        product_pic = #{record.productPic,jdbcType=VARCHAR},
-      </if>
-      <if test="record.productName != null">
-        product_name = #{record.productName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.productSubTitle != null">
-        product_sub_title = #{record.productSubTitle,jdbcType=VARCHAR},
-      </if>
-      <if test="record.productSkuCode != null">
-        product_sku_code = #{record.productSkuCode,jdbcType=VARCHAR},
-      </if>
-      <if test="record.memberNickname != null">
-        member_nickname = #{record.memberNickname,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createDate != null">
-        create_date = #{record.createDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.modifyDate != null">
-        modify_date = #{record.modifyDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.deleteStatus != null">
-        delete_status = #{record.deleteStatus,jdbcType=INTEGER},
-      </if>
-      <if test="record.productCategoryId != null">
-        product_category_id = #{record.productCategoryId,jdbcType=BIGINT},
-      </if>
-      <if test="record.productBrand != null">
-        product_brand = #{record.productBrand,jdbcType=VARCHAR},
-      </if>
-      <if test="record.productSn != null">
-        product_sn = #{record.productSn,jdbcType=VARCHAR},
-      </if>
-      <if test="record.productAttr != null">
-        product_attr = #{record.productAttr,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update oms_cart_item
-    set id = #{record.id,jdbcType=BIGINT},
-      product_id = #{record.productId,jdbcType=BIGINT},
-      product_sku_id = #{record.productSkuId,jdbcType=BIGINT},
-      member_id = #{record.memberId,jdbcType=BIGINT},
-      quantity = #{record.quantity,jdbcType=INTEGER},
-      price = #{record.price,jdbcType=DECIMAL},
-      product_pic = #{record.productPic,jdbcType=VARCHAR},
-      product_name = #{record.productName,jdbcType=VARCHAR},
-      product_sub_title = #{record.productSubTitle,jdbcType=VARCHAR},
-      product_sku_code = #{record.productSkuCode,jdbcType=VARCHAR},
-      member_nickname = #{record.memberNickname,jdbcType=VARCHAR},
-      create_date = #{record.createDate,jdbcType=TIMESTAMP},
-      modify_date = #{record.modifyDate,jdbcType=TIMESTAMP},
-      delete_status = #{record.deleteStatus,jdbcType=INTEGER},
-      product_category_id = #{record.productCategoryId,jdbcType=BIGINT},
-      product_brand = #{record.productBrand,jdbcType=VARCHAR},
-      product_sn = #{record.productSn,jdbcType=VARCHAR},
-      product_attr = #{record.productAttr,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.felix.mall.entity.OmsCartItem">
     update oms_cart_item
     <set>

@@ -12,82 +12,10 @@
       <arg column="type" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
     id, continue_sign_day, continue_sign_point, consume_per_point, low_order_amount, 
     max_point_per_order, type
   </sql>
-  <select id="selectByExample" parameterType="com.felix.mall.entity.UmsMemberRuleSettingExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from ums_member_rule_setting
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -97,12 +25,6 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from ums_member_rule_setting
     where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.felix.mall.entity.UmsMemberRuleSettingExample">
-    delete from ums_member_rule_setting
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
   </delete>
   <insert id="insert" parameterType="com.felix.mall.entity.UmsMemberRuleSetting">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -161,54 +83,6 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.felix.mall.entity.UmsMemberRuleSettingExample" resultType="java.lang.Long">
-    select count(*) from ums_member_rule_setting
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update ums_member_rule_setting
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.continueSignDay != null">
-        continue_sign_day = #{record.continueSignDay,jdbcType=INTEGER},
-      </if>
-      <if test="record.continueSignPoint != null">
-        continue_sign_point = #{record.continueSignPoint,jdbcType=INTEGER},
-      </if>
-      <if test="record.consumePerPoint != null">
-        consume_per_point = #{record.consumePerPoint,jdbcType=DECIMAL},
-      </if>
-      <if test="record.lowOrderAmount != null">
-        low_order_amount = #{record.lowOrderAmount,jdbcType=DECIMAL},
-      </if>
-      <if test="record.maxPointPerOrder != null">
-        max_point_per_order = #{record.maxPointPerOrder,jdbcType=INTEGER},
-      </if>
-      <if test="record.type != null">
-        type = #{record.type,jdbcType=INTEGER},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update ums_member_rule_setting
-    set id = #{record.id,jdbcType=BIGINT},
-      continue_sign_day = #{record.continueSignDay,jdbcType=INTEGER},
-      continue_sign_point = #{record.continueSignPoint,jdbcType=INTEGER},
-      consume_per_point = #{record.consumePerPoint,jdbcType=DECIMAL},
-      low_order_amount = #{record.lowOrderAmount,jdbcType=DECIMAL},
-      max_point_per_order = #{record.maxPointPerOrder,jdbcType=INTEGER},
-      type = #{record.type,jdbcType=INTEGER}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.felix.mall.entity.UmsMemberRuleSetting">
     update ums_member_rule_setting
     <set>

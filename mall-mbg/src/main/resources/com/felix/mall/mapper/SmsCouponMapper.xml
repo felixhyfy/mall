@@ -23,82 +23,10 @@
       <arg column="member_level" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
   <sql id="Base_Column_List">
     id, type, name, platform, count, amount, per_limit, min_point, start_time, end_time, 
     use_type, note, publish_count, use_count, receive_count, enable_time, code, member_level
   </sql>
-  <select id="selectByExample" parameterType="com.felix.mall.entity.SmsCouponExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from sms_coupon
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -108,12 +36,6 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from sms_coupon
     where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.felix.mall.entity.SmsCouponExample">
-    delete from sms_coupon
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
   </delete>
   <insert id="insert" parameterType="com.felix.mall.entity.SmsCoupon">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -244,98 +166,6 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.felix.mall.entity.SmsCouponExample" resultType="java.lang.Long">
-    select count(*) from sms_coupon
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update sms_coupon
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.type != null">
-        type = #{record.type,jdbcType=INTEGER},
-      </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.platform != null">
-        platform = #{record.platform,jdbcType=INTEGER},
-      </if>
-      <if test="record.count != null">
-        count = #{record.count,jdbcType=INTEGER},
-      </if>
-      <if test="record.amount != null">
-        amount = #{record.amount,jdbcType=DECIMAL},
-      </if>
-      <if test="record.perLimit != null">
-        per_limit = #{record.perLimit,jdbcType=INTEGER},
-      </if>
-      <if test="record.minPoint != null">
-        min_point = #{record.minPoint,jdbcType=DECIMAL},
-      </if>
-      <if test="record.startTime != null">
-        start_time = #{record.startTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.endTime != null">
-        end_time = #{record.endTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.useType != null">
-        use_type = #{record.useType,jdbcType=INTEGER},
-      </if>
-      <if test="record.note != null">
-        note = #{record.note,jdbcType=VARCHAR},
-      </if>
-      <if test="record.publishCount != null">
-        publish_count = #{record.publishCount,jdbcType=INTEGER},
-      </if>
-      <if test="record.useCount != null">
-        use_count = #{record.useCount,jdbcType=INTEGER},
-      </if>
-      <if test="record.receiveCount != null">
-        receive_count = #{record.receiveCount,jdbcType=INTEGER},
-      </if>
-      <if test="record.enableTime != null">
-        enable_time = #{record.enableTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.code != null">
-        code = #{record.code,jdbcType=VARCHAR},
-      </if>
-      <if test="record.memberLevel != null">
-        member_level = #{record.memberLevel,jdbcType=INTEGER},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update sms_coupon
-    set id = #{record.id,jdbcType=BIGINT},
-      type = #{record.type,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      platform = #{record.platform,jdbcType=INTEGER},
-      count = #{record.count,jdbcType=INTEGER},
-      amount = #{record.amount,jdbcType=DECIMAL},
-      per_limit = #{record.perLimit,jdbcType=INTEGER},
-      min_point = #{record.minPoint,jdbcType=DECIMAL},
-      start_time = #{record.startTime,jdbcType=TIMESTAMP},
-      end_time = #{record.endTime,jdbcType=TIMESTAMP},
-      use_type = #{record.useType,jdbcType=INTEGER},
-      note = #{record.note,jdbcType=VARCHAR},
-      publish_count = #{record.publishCount,jdbcType=INTEGER},
-      use_count = #{record.useCount,jdbcType=INTEGER},
-      receive_count = #{record.receiveCount,jdbcType=INTEGER},
-      enable_time = #{record.enableTime,jdbcType=TIMESTAMP},
-      code = #{record.code,jdbcType=VARCHAR},
-      member_level = #{record.memberLevel,jdbcType=INTEGER}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.felix.mall.entity.SmsCoupon">
     update sms_coupon
     <set>
