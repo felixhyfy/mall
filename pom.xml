@@ -197,23 +197,7 @@
         </dependencies>
     </dependencyManagement>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>1.3.5</version>
-                <configuration>
-                    <!-- 在控制台打印执行日志 -->
-                    <verbose>true</verbose>
-                    <!-- 重复生成时会覆盖之前的文件-->
-                    <overwrite>true</overwrite>
-                    <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>
-                </configuration>
-            </plugin>
 
-        </plugins>
-    </build>
 
 
 </project>
