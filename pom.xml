@@ -17,7 +17,7 @@
         <module>mall-search</module>
     </modules>
 
-    <!--确定SpringBoot-->
+    <!--确定SpringBoot依赖-->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -97,6 +97,7 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
         </dependency>
+
     </dependencies>
 
     <dependencyManagement>
