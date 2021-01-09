@@ -4,9 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.felix</groupId>
+    <groupId>com.felix.mall</groupId>
     <artifactId>mall</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>mall-admin</module>
+        <module>mall-security</module>
+        <module>mall-mbg</module>
+        <module>mall-common</module>
+        <module>mall-search</module>
+    </modules>
 
-    
+
 </project>
