@@ -1,6 +1,7 @@
 package com.felix.mall.service;
 
 import com.felix.mall.entity.UmsAdmin;
+import org.springframework.stereotype.Service;
 
 /**
  * @author Felix
@@ -9,6 +10,7 @@ import com.felix.mall.entity.UmsAdmin;
  * @description 后台管理验证登录Service
  * @date 2021/1/10 13:27
  */
+@Service
 public interface UmsAdminService {
 
     /**
