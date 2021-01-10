@@ -14,7 +14,7 @@ import java.io.IOException;
  * @author Felix
  * @packageName com.felix.mall.security.component
  * @className RestfulAccessDeniedHandler
- * @description 当访问接口没有权限时，自定义的返回结构
+ * @description 当访问接口没有权限时，自定义的返回结果
  * @date 2021/1/10 13:41
  */
 public class RestfulAccessDeniedHandler implements AccessDeniedHandler {
