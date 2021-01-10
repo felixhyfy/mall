@@ -34,7 +34,7 @@ public class JWTTokenUtil {
     private Long expiration;
 
     /**
-     * 根据负责生成JWT的token
+     * 根据登录用户信息生成JWT的token
      */
     private String generateToken(Map<String, Object> claims) {
         return Jwts.builder()
