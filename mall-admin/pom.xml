@@ -11,5 +11,18 @@
 
     <artifactId>mall-admin</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.felix.mall</groupId>
+            <artifactId>mall-mbg</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.felix.mall</groupId>
+            <artifactId>mall-security</artifactId>
+        </dependency>
+
+    </dependencies>
+
+
 
 </project>
