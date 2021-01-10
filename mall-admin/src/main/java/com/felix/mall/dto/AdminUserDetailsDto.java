@@ -13,16 +13,16 @@ import java.util.stream.Collectors;
 /**
  * @author Felix
  * @packageName com.felix.mall.dto
- * @className AdminUserDetails
+ * @className AdminUserDetailsDto
  * @description Spring Security 需要的用户详情
  * @date 2021/1/10 14:06
  */
-public class AdminUserDetails implements UserDetails {
+public class AdminUserDetailsDto implements UserDetails {
 
     private UmsAdmin umsAdmin;
     private List<UmsPermission> permissionList;
 
-    public AdminUserDetails(UmsAdmin umsAdmin, List<UmsPermission> permissionList) {
+    public AdminUserDetailsDto(UmsAdmin umsAdmin, List<UmsPermission> permissionList) {
         this.umsAdmin = umsAdmin;
         this.permissionList = permissionList;
     }
@@ -64,5 +64,10 @@ public class AdminUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return umsAdmin.getStatus().equals(1);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }
