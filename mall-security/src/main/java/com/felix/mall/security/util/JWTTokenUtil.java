@@ -73,6 +73,7 @@ public class JWTTokenUtil {
     public String getUserNameFromToken(String token) {
         String username;
         try {
+            //拿到负载
             Claims claims = getClaimsFromToken(token);
             username =  claims.getSubject();
         } catch (Exception e) {
