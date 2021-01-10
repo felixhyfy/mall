@@ -4,6 +4,7 @@ import cn.hutool.json.JSONUtil;
 import com.felix.mall.response.CommonResponse;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +15,10 @@ import java.io.IOException;
  * @author Felix
  * @packageName com.felix.mall.security.component
  * @className RestAuthenticationEntryPoint
- * @description 当未登录或者token失效访问接口时，自定义的返回结果
+ * @description 当未登录或者token失效访问接口时，自定义的JSON返回结果
  * @date 2021/1/10 13:58
  */
+@Component
 public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request,
