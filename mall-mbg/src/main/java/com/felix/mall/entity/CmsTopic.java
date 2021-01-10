@@ -6,7 +6,7 @@ import java.util.Date;
  * 这是MyBatis Generator自动生成的Model Class.
  * 对应的数据表是 : cms_topic
  * @author Felix
- * @date 2021-01-09 21:27:00
+ * @date 2021-01-10 21:47:13
  */
 public class CmsTopic {
     /**

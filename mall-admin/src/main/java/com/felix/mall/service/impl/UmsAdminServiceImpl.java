@@ -1,5 +1,6 @@
 package com.felix.mall.service.impl;
 
+import com.felix.mall.dao.UmsAdminRoleRelationDao;
 import com.felix.mall.entity.UmsAdmin;
 import com.felix.mall.entity.UmsPermission;
 import com.felix.mall.mapper.UmsAdminMapper;
@@ -51,12 +52,16 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     @Autowired
     private UmsAdminMapper adminMapper;
 
-
-
+    /**
+     * 获取用户权限
+     */
+    @Autowired
+    private UmsAdminRoleRelationDao adminRoleRelationDao;
 
     @Override
     public UmsAdmin getAdminByUsername(String username) {
-        return null;
+        UmsAdmin umsAdmin = new UmsAdmin();
+
     }
 
     @Override
