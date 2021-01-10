@@ -1,6 +1,6 @@
 package com.felix.mall.security.config;
 
-import com.felix.mall.dto.AdminUserDetails;
+import com.felix.mall.dto.AdminUserDetailsDto;
 import com.felix.mall.entity.UmsAdmin;
 import com.felix.mall.entity.UmsPermission;
 import com.felix.mall.security.component.JwtAuthenticationTokenFilter;
@@ -11,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.access.method.P;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -124,7 +122,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //获取当前用户的permissionList
                 List<UmsPermission> permissionList = adminService.getPermissionList(admin.getId());
                 //将admin和permissionList封装成DTO返回
-                return new AdminUserDetails(admin, permissionList);
+                return new AdminUserDetailsDto(admin, permissionList);
             }
             //登录失败
             throw new UsernameNotFoundException("用户名或密码错误");
