@@ -106,7 +106,6 @@ public class UmsAdminServiceImpl implements UmsAdminService {
 
     @Override
     public String login(String username, String password) {
-        //todo:下次从这里开始写
         //使用token
         String token = null;
         try {
