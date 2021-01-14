@@ -1,6 +1,6 @@
 package com.felix.mall.controller;
 
-import com.felix.mall.entity.UmsAdmin;
+import com.felix.mall.mbg.entity.UmsAdmin;
 import com.felix.mall.response.CommonResponse;
 import com.felix.mall.service.UmsAdminService;
 import io.swagger.annotations.Api;

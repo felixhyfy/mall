@@ -18,15 +18,15 @@
             <artifactId>mall-common</artifactId>
         </dependency>
         <!--Spring Security-->
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-        <!--JWT(Json Web Token) 登录令牌-->
+        &lt;!&ndash;JWT(Json Web Token) 登录令牌&ndash;&gt;
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
 

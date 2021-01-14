@@ -1,8 +1,8 @@
 package com.felix.mall.security.config;
 
 import com.felix.mall.dto.AdminUserDetailsDto;
-import com.felix.mall.entity.UmsAdmin;
-import com.felix.mall.entity.UmsPermission;
+import com.felix.mall.mbg.entity.UmsAdmin;
+import com.felix.mall.mbg.entity.UmsPermission;
 import com.felix.mall.security.component.JwtAuthenticationTokenFilter;
 import com.felix.mall.security.component.RestAuthenticationEntryPoint;
 import com.felix.mall.security.component.RestfulAccessDeniedHandler;

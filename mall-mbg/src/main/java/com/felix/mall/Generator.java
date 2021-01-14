@@ -1,6 +1,6 @@
 package com.felix.mall;
 
-import com.felix.mall.config.MybatisCommentGenerator;
+
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
 import org.mybatis.generator.config.xml.ConfigurationParser;

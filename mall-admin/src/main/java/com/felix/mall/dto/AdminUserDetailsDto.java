@@ -1,7 +1,7 @@
 package com.felix.mall.dto;
 
-import com.felix.mall.entity.UmsAdmin;
-import com.felix.mall.entity.UmsPermission;
+import com.felix.mall.mbg.entity.UmsAdmin;
+import com.felix.mall.mbg.entity.UmsPermission;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
