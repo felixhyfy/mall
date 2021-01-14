@@ -1,6 +1,7 @@
 package com.felix.mall.controller;
 
-import com.felix.mall.entity.UmsAdmin;
+import com.felix.mall.dto.UmsAdminLoginDto;
+import com.felix.mall.mbg.entity.UmsAdmin;
 import com.felix.mall.response.CommonResponse;
 import com.felix.mall.service.UmsAdminService;
 import io.swagger.annotations.Api;
@@ -9,10 +10,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Felix
@@ -53,7 +58,16 @@ public class UmsAdminController {
     @ApiOperation(value = "登录以后返回token")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResponse login() {
-        return null;
+    public CommonResponse login(@RequestBody UmsAdminLoginDto umsAdminLoginDto,
+                                BindingResult result) {
+        //获得token
+        String token = adminService.login(umsAdminLoginDto.getUsername(), umsAdminLoginDto.getPassword());
+        if (null == token) {
+            return CommonResponse.validateFailed("用户名或密码错误");
+        }
+        Map<String, String> tokenMap = new HashMap<>();
+        tokenMap.put("token", token);
+        tokenMap.put("tokenHead", tokenHead);
+        return CommonResponse.success(tokenMap);
     }
 }

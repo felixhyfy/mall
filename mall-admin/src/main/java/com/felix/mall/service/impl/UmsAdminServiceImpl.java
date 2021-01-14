@@ -2,11 +2,11 @@ package com.felix.mall.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.felix.mall.dao.UmsAdminRoleRelationDao;
-import com.felix.mall.entity.UmsAdmin;
-import com.felix.mall.entity.UmsAdminExample;
-import com.felix.mall.entity.UmsPermission;
 import com.felix.mall.enums.UmsAdminStatusCode;
-import com.felix.mall.mapper.UmsAdminMapper;
+import com.felix.mall.mbg.entity.UmsAdmin;
+import com.felix.mall.mbg.entity.UmsAdminExample;
+import com.felix.mall.mbg.entity.UmsPermission;
+import com.felix.mall.mbg.mapper.UmsAdminMapper;
 import com.felix.mall.security.util.JWTTokenUtil;
 import com.felix.mall.service.UmsAdminService;
 import org.slf4j.Logger;

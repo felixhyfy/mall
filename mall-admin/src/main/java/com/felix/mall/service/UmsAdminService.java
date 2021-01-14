@@ -1,7 +1,7 @@
 package com.felix.mall.service;
 
-import com.felix.mall.entity.UmsAdmin;
-import com.felix.mall.entity.UmsPermission;
+import com.felix.mall.mbg.entity.UmsAdmin;
+import com.felix.mall.mbg.entity.UmsPermission;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

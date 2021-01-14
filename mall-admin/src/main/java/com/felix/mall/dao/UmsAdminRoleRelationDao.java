@@ -1,6 +1,6 @@
 package com.felix.mall.dao;
 
-import com.felix.mall.entity.UmsPermission;
+import com.felix.mall.mbg.entity.UmsPermission;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
