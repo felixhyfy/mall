@@ -1,7 +1,8 @@
 package com.felix.mall.controller;
 
-import com.felix.mall.dto.UmsAdminLoginDto;
+import com.felix.mall.dto.UmsAdminLoginDTO;
 import com.felix.mall.mbg.entity.UmsAdmin;
+import com.felix.mall.mbg.entity.UmsPermission;
 import com.felix.mall.response.CommonResponse;
 import com.felix.mall.service.UmsAdminService;
 import io.swagger.annotations.Api;
@@ -11,12 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -58,10 +57,10 @@ public class UmsAdminController {
     @ApiOperation(value = "登录以后返回token")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResponse login(@RequestBody UmsAdminLoginDto umsAdminLoginDto,
+    public CommonResponse login(@RequestBody UmsAdminLoginDTO umsAdminLoginDTO,
                                 BindingResult result) {
         //获得token
-        String token = adminService.login(umsAdminLoginDto.getUsername(), umsAdminLoginDto.getPassword());
+        String token = adminService.login(umsAdminLoginDTO.getUsername(), umsAdminLoginDTO.getPassword());
         if (null == token) {
             return CommonResponse.validateFailed("用户名或密码错误");
         }
@@ -69,5 +68,14 @@ public class UmsAdminController {
         tokenMap.put("token", token);
         tokenMap.put("tokenHead", tokenHead);
         return CommonResponse.success(tokenMap);
+    }
+
+    @ApiOperation("获取用户所有权限（包括+-权限）")
+    @RequestMapping(value = "/permission/{adminId}", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResponse<List<UmsPermission>> getPermissionList(@PathVariable Long adminId) {
+        List<UmsPermission> permissionList = adminService.getPermissionList(adminId);
+        log.info("{}的权限为：{}", adminId, permissionList);
+        return CommonResponse.success(permissionList);
     }
 }

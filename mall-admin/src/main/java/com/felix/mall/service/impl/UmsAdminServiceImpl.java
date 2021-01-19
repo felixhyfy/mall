@@ -1,7 +1,7 @@
 package com.felix.mall.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.felix.mall.dao.UmsAdminRoleRelationDao;
+import com.felix.mall.dao.UmsAdminRoleRelationDAO;
 import com.felix.mall.enums.UmsAdminStatusCode;
 import com.felix.mall.mbg.entity.UmsAdmin;
 import com.felix.mall.mbg.entity.UmsAdminExample;
@@ -18,7 +18,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -66,7 +65,7 @@ public class UmsAdminServiceImpl implements UmsAdminService {
      * 获取用户权限
      */
     @Autowired
-    private UmsAdminRoleRelationDao adminRoleRelationDao;
+    private UmsAdminRoleRelationDAO adminRoleRelationDao;
 
     @Override
     public UmsAdmin getAdminByUsername(String username) {

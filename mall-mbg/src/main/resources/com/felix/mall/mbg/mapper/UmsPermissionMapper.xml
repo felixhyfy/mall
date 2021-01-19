@@ -91,7 +91,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from ums_permission
     where id = #{id,jdbcType=BIGINT}
@@ -110,12 +110,12 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into ums_permission (pid, name, value, 
-      icon, type, uri, status, 
-      create_time, sort)
-    values (#{pid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
-      #{icon,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{uri,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{sort,jdbcType=INTEGER})
+    insert into ums_permission (pid, name, value,
+    icon, type, uri, status,
+    create_time, sort)
+    values (#{pid,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR},
+    #{icon,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{uri,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+    #{createTime,jdbcType=TIMESTAMP}, #{sort,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.felix.mall.mbg.entity.UmsPermission">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
