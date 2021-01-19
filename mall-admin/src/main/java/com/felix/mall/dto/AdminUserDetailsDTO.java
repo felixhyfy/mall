@@ -13,16 +13,16 @@ import java.util.stream.Collectors;
 /**
  * @author Felix
  * @packageName com.felix.mall.dto
- * @className AdminUserDetailsDto
+ * @className AdminUserDetailsDTO
  * @description Spring Security 需要的用户详情
  * @date 2021/1/10 14:06
  */
-public class AdminUserDetailsDto implements UserDetails {
+public class AdminUserDetailsDTO implements UserDetails {
 
     private UmsAdmin umsAdmin;
     private List<UmsPermission> permissionList;
 
-    public AdminUserDetailsDto(UmsAdmin umsAdmin, List<UmsPermission> permissionList) {
+    public AdminUserDetailsDTO(UmsAdmin umsAdmin, List<UmsPermission> permissionList) {
         this.umsAdmin = umsAdmin;
         this.permissionList = permissionList;
     }

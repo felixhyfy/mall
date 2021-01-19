@@ -1,6 +1,6 @@
 package com.felix.mall.security.config;
 
-import com.felix.mall.dto.AdminUserDetailsDto;
+import com.felix.mall.dto.AdminUserDetailsDTO;
 import com.felix.mall.mbg.entity.UmsAdmin;
 import com.felix.mall.mbg.entity.UmsPermission;
 import com.felix.mall.security.component.JwtAuthenticationTokenFilter;
@@ -122,7 +122,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //获取当前用户的permissionList
                 List<UmsPermission> permissionList = adminService.getPermissionList(admin.getId());
                 //将admin和permissionList封装成DTO返回
-                return new AdminUserDetailsDto(admin, permissionList);
+                return new AdminUserDetailsDTO(admin, permissionList);
             }
             //登录失败
             throw new UsernameNotFoundException("用户名或密码错误");

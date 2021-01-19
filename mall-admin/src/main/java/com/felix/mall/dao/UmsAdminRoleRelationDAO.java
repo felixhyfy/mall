@@ -8,11 +8,11 @@ import java.util.List;
 /**
  * @author Felix
  * @packageName com.felix.mall.dao
- * @className UmsAdminRoleRelationDao
+ * @className UmsAdminRoleRelationDAO
  * @description 后台用户与角色管理自定义Dao
  * @date 2021/1/10 20:28
  */
-public interface UmsAdminRoleRelationDao {
+public interface UmsAdminRoleRelationDAO {
 
     /**
      * 获取用户所有权限（包括+-权限）

@@ -1,6 +1,6 @@
 package com.felix.mall.controller;
 
-import com.felix.mall.dto.UmsAdminLoginDto;
+import com.felix.mall.dto.UmsAdminLoginDTO;
 import com.felix.mall.mbg.entity.UmsAdmin;
 import com.felix.mall.mbg.entity.UmsPermission;
 import com.felix.mall.response.CommonResponse;
@@ -57,10 +57,10 @@ public class UmsAdminController {
     @ApiOperation(value = "登录以后返回token")
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResponse login(@RequestBody UmsAdminLoginDto umsAdminLoginDto,
+    public CommonResponse login(@RequestBody UmsAdminLoginDTO umsAdminLoginDTO,
                                 BindingResult result) {
         //获得token
-        String token = adminService.login(umsAdminLoginDto.getUsername(), umsAdminLoginDto.getPassword());
+        String token = adminService.login(umsAdminLoginDTO.getUsername(), umsAdminLoginDTO.getPassword());
         if (null == token) {
             return CommonResponse.validateFailed("用户名或密码错误");
         }
