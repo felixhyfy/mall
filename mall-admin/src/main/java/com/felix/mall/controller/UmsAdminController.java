@@ -75,6 +75,7 @@ public class UmsAdminController {
     @ResponseBody
     public CommonResponse<List<UmsPermission>> getPermissionList(@PathVariable Long adminId) {
         List<UmsPermission> permissionList = adminService.getPermissionList(adminId);
+        log.info("{}的权限为：{}", adminId, permissionList);
         return CommonResponse.success(permissionList);
     }
 }
