@@ -2,11 +2,12 @@ package com.felix.mall.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.felix.mall.dao.UmsAdminRoleRelationDAO;
+import com.felix.mall.dto.UpdateAdminPasswordDTO;
 import com.felix.mall.enums.UmsAdminStatusCode;
-import com.felix.mall.mbg.entity.UmsAdmin;
-import com.felix.mall.mbg.entity.UmsAdminExample;
-import com.felix.mall.mbg.entity.UmsPermission;
+import com.felix.mall.mbg.entity.*;
+import com.felix.mall.mbg.mapper.UmsAdminLoginLogMapper;
 import com.felix.mall.mbg.mapper.UmsAdminMapper;
+import com.felix.mall.mbg.mapper.UmsAdminPermissionRelationMapper;
 import com.felix.mall.security.util.JWTTokenUtil;
 import com.felix.mall.service.UmsAdminService;
 import org.slf4j.Logger;
@@ -21,6 +22,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
@@ -46,26 +48,42 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     /**
      * 生成和解析Jwt Token的工具类
      */
-    @Autowired
+    @Resource
     private JWTTokenUtil jwtTokenUtil;
 
     /**
      * 密码编码解码类
      */
-    @Autowired
+    @Resource
     private PasswordEncoder passwordEncoder;
 
     /**
      * UmsAdminMapper
      */
-    @Autowired
+    @Resource
     private UmsAdminMapper adminMapper;
 
     /**
      * 获取用户权限
      */
-    @Autowired
+    @Resource
     private UmsAdminRoleRelationDAO adminRoleRelationDao;
+
+    /**
+     * 后台用户和权限关系表
+     */
+    @Resource
+    private UmsAdminPermissionRelationMapper adminPermissionRelationMapper;
+
+    /**
+     * 登录日志
+     */
+    @Resource
+    private UmsAdminLoginLogMapper loginLogMapper;
+
+    //todo:需要引入用户缓存操作类
+
+
 
     @Override
     public UmsAdmin getAdminByUsername(String username) {
@@ -123,6 +141,61 @@ public class UmsAdminServiceImpl implements UmsAdminService {
             LOGGER.warn("登录异常：{}", e.getMessage());
         }
         return token;
+    }
+
+    @Override
+    public String refreshToken(String oldToken) {
+        return null;
+    }
+
+    @Override
+    public UmsAdmin getItem(Long id) {
+        return null;
+    }
+
+    @Override
+    public List<UmsAdmin> list(String keyword, Integer pageSize, Integer pageNum) {
+        return null;
+    }
+
+    @Override
+    public int update(Long id, UmsAdmin umsAdmin) {
+        return 0;
+    }
+
+    @Override
+    public int delete(Long id) {
+        return 0;
+    }
+
+    @Override
+    public int updateRole(Long adminId, List<Long> roleId) {
+        return 0;
+    }
+
+    @Override
+    public List<UmsRole> getRoleList(Long adminId) {
+        return null;
+    }
+
+    @Override
+    public List<UmsResource> getResourceList(Long adminId) {
+        return null;
+    }
+
+    @Override
+    public int updatePermission(Long adminId, List<Long> permissionIds) {
+        return 0;
+    }
+
+    @Override
+    public int updatePassword(UpdateAdminPasswordDTO updateAdminPasswordDTO) {
+        return 0;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) {
+        return null;
     }
 
     @Override
