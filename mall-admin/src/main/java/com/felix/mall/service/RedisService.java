@@ -3,11 +3,11 @@ package com.felix.mall.service;
 /**
  * @author Felix
  * @packageName com.felix.mall.service
- * @className RedisSerivce
+ * @className RedisService
  * @description Redis缓存类Service 使用json存储数据
  * @date 2021/1/30 13:47
  */
-public interface RedisSerivce {
+public interface RedisService {
 
     /**
      * 存储数据

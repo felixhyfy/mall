@@ -2,6 +2,7 @@ package com.felix.mall.service.impl;
 
 import com.felix.mall.response.CommonResponse;
 import com.felix.mall.service.UmsMemberService;
+import org.springframework.beans.factory.annotation.Value;
 
 /**
  * @author Felix
@@ -11,6 +12,12 @@ import com.felix.mall.service.UmsMemberService;
  * @date 2021/1/30 13:43
  */
 public class UmsMemberServiceImpl implements UmsMemberService {
+
+    @Value("redis.key.prefix.authCode")
+    private String REDIS_KEY_PREFIX_AUTH_CODE;
+
+    @Value("redis.key.expire.authCode")
+    private String AUTH_CODE_EXPIRE_SECONDS;
 
     @Override
     public CommonResponse generateAuthCode(String telephone) {
