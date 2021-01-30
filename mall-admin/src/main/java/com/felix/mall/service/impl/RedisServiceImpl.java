@@ -4,6 +4,7 @@ import com.felix.mall.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.stereotype.Service;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,6 +15,7 @@ import java.util.concurrent.TimeUnit;
  * @description 缓存Service实现类
  * @date 2021/1/30 13:53
  */
+@Service
 public class RedisServiceImpl implements RedisService {
 
     @Autowired
