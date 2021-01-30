@@ -14,6 +14,7 @@ public class UmsMemberServiceImpl implements UmsMemberService {
 
     @Override
     public CommonResponse generateAuthCode(String telephone) {
+        //todo:需要使用缓存保存数据
         return null;
     }
 
