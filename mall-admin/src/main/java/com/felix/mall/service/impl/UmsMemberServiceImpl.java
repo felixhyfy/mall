@@ -27,7 +27,7 @@ public class UmsMemberServiceImpl implements UmsMemberService {
     private String REDIS_KEY_PREFIX_AUTH_CODE;
 
     @Value("redis.key.expire.authCode")
-    private Long AUTH_CODE_EXPIRE_SECONDS;
+    private String AUTH_CODE_EXPIRE_SECONDS;
 
     @Override
     public CommonResponse generateAuthCode(String telephone) {
@@ -40,7 +40,7 @@ public class UmsMemberServiceImpl implements UmsMemberService {
         //验证码绑定手机号并存储到Redis
         redisService.set(REDIS_KEY_PREFIX_AUTH_CODE + telephone, sb.toString());
         //设置过期时间
-        redisService.expire(REDIS_KEY_PREFIX_AUTH_CODE + telephone, AUTH_CODE_EXPIRE_SECONDS);
+        redisService.expire(REDIS_KEY_PREFIX_AUTH_CODE + telephone, Long.parseLong(AUTH_CODE_EXPIRE_SECONDS));
         return CommonResponse.success(sb.toString(), "获取验证码成功");
     }
 
