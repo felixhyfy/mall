@@ -1,5 +1,7 @@
 package com.felix.mall.service;
 
+import java.util.List;
+
 /**
  * @author Felix
  * @packageName com.felix.mall.service
@@ -34,8 +36,16 @@ public interface RedisService {
     /**
      * 删除数据
      * @param key
+     * @return
      */
-    void remove(String key);
+    Boolean remove(String key);
+
+    /**
+     * 批量删除数据
+     * @param keys
+     * @return
+     */
+    Long remove(List<String> keys);
 
     /**
      * 自增操作
@@ -44,4 +54,6 @@ public interface RedisService {
      * @return
      */
     Long increment(String key, long delta);
+
+
 }

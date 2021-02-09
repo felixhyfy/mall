@@ -23,6 +23,7 @@ public interface UmsAdminService {
 
     /**
      * 根据用户名获取后台管理员
+     *
      * @param username
      * @return
      */
@@ -30,6 +31,7 @@ public interface UmsAdminService {
 
     /**
      * 注册功能
+     *
      * @param umsAdminParam
      * @return
      */
@@ -37,6 +39,7 @@ public interface UmsAdminService {
 
     /**
      * 登录功能
+     *
      * @param username
      * @param password
      * @return 生成的JWT的token
@@ -45,6 +48,7 @@ public interface UmsAdminService {
 
     /**
      * 刷新token
+     *
      * @param oldToken
      * @return
      */
@@ -52,6 +56,7 @@ public interface UmsAdminService {
 
     /**
      * 根据用户id获取用户
+     *
      * @param id
      * @return
      */
@@ -59,6 +64,7 @@ public interface UmsAdminService {
 
     /**
      * 根据用户名或昵称分页查询用户
+     *
      * @param keyword
      * @param pageSize
      * @param pageNum
@@ -68,6 +74,7 @@ public interface UmsAdminService {
 
     /**
      * 修改指定用户信息
+     *
      * @param id
      * @param umsAdmin
      * @return
@@ -76,6 +83,7 @@ public interface UmsAdminService {
 
     /**
      * 删除指定用户
+     *
      * @param id
      * @return
      */
@@ -83,6 +91,7 @@ public interface UmsAdminService {
 
     /**
      * 修改用户角色关系
+     *
      * @param adminId
      * @param roleId
      * @return
@@ -92,6 +101,7 @@ public interface UmsAdminService {
 
     /**
      * 获取用户对应角色
+     *
      * @param adminId
      * @return
      */
@@ -99,6 +109,7 @@ public interface UmsAdminService {
 
     /**
      * 获取指定用户的可访问资源
+     *
      * @param adminId
      * @return
      */
@@ -106,6 +117,7 @@ public interface UmsAdminService {
 
     /**
      * 修改用户的+-权限
+     *
      * @param adminId
      * @param permissionIds
      * @return
@@ -115,6 +127,7 @@ public interface UmsAdminService {
 
     /**
      * 获取用户所有权限（包括角色权限和+-权限）
+     *
      * @param adminId
      * @return
      */
@@ -122,6 +135,7 @@ public interface UmsAdminService {
 
     /**
      * 修改密码
+     *
      * @param updateAdminPasswordDTO
      * @return
      */
@@ -129,6 +143,7 @@ public interface UmsAdminService {
 
     /**
      * 获取用户信息
+     *
      * @param username
      * @return
      */

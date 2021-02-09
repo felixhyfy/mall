@@ -2,10 +2,10 @@ package com.felix.mall.service.impl;
 
 import com.felix.mall.service.RedisService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -37,8 +37,13 @@ public class RedisServiceImpl implements RedisService {
     }
 
     @Override
-    public void remove(String key) {
-        stringRedisTemplate.delete(key);
+    public Boolean remove(String key) {
+        return stringRedisTemplate.delete(key);
+    }
+
+    @Override
+    public Long remove(List<String> keys) {
+        return stringRedisTemplate.delete(keys);
     }
 
     @Override
