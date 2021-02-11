@@ -1,6 +1,7 @@
 package com.felix.mall.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.felix.mall.dao.UmsAdminPermissionRelationDAO;
 import com.felix.mall.dao.UmsAdminRoleRelationDAO;
 import com.felix.mall.dto.UpdateAdminPasswordDTO;
 import com.felix.mall.enums.UmsAdminStatusCode;
@@ -8,7 +9,9 @@ import com.felix.mall.mbg.entity.*;
 import com.felix.mall.mbg.mapper.UmsAdminLoginLogMapper;
 import com.felix.mall.mbg.mapper.UmsAdminMapper;
 import com.felix.mall.mbg.mapper.UmsAdminPermissionRelationMapper;
+import com.felix.mall.mbg.mapper.UmsAdminRoleRelationMapper;
 import com.felix.mall.security.util.JWTTokenUtil;
+import com.felix.mall.service.UmsAdminCacheService;
 import com.felix.mall.service.UmsAdminService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -81,8 +84,14 @@ public class UmsAdminServiceImpl implements UmsAdminService {
     @Resource
     private UmsAdminLoginLogMapper loginLogMapper;
 
-    //todo:需要引入用户缓存操作类
+    @Autowired
+    private UmsAdminRoleRelationMapper adminRoleRelationMapper;
 
+    @Autowired
+    private UmsAdminPermissionRelationDAO adminPermissionRelationDao;
+
+    @Autowired
+    private UmsAdminCacheService adminCacheService;
 
 
     @Override
