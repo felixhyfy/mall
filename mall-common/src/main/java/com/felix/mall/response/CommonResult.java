@@ -10,16 +10,16 @@ import com.felix.mall.enums.ResponseCode;
  * @description 通用返回对象
  * @date 2021/1/10 13:45
  */
-public class CommonResponse<T> {
+public class CommonResult<T> {
 
     private long code;
     private String message;
     private T data;
 
-    protected CommonResponse() {
+    protected CommonResult() {
     }
 
-    protected CommonResponse(long code, String message, T data) {
+    protected CommonResult(long code, String message, T data) {
         this.code = code;
         this.message = message;
         this.data = data;
@@ -30,8 +30,8 @@ public class CommonResponse<T> {
      *
      * @param data 获取的数据
      */
-    public static <T> CommonResponse<T> success(T data) {
-        return new CommonResponse<T>(ResponseCode.SUCCESS.getCode(), ResponseCode.SUCCESS.getMessage(), data);
+    public static <T> CommonResult<T> success(T data) {
+        return new CommonResult<T>(ResponseCode.SUCCESS.getCode(), ResponseCode.SUCCESS.getMessage(), data);
     }
 
     /**
@@ -40,16 +40,16 @@ public class CommonResponse<T> {
      * @param data 获取的数据
      * @param  message 提示信息
      */
-    public static <T> CommonResponse<T> success(T data, String message) {
-        return new CommonResponse<T>(ResponseCode.SUCCESS.getCode(), message, data);
+    public static <T> CommonResult<T> success(T data, String message) {
+        return new CommonResult<T>(ResponseCode.SUCCESS.getCode(), message, data);
     }
 
     /**
      * 失败返回结果
      * @param errorCode 错误码
      */
-    public static <T> CommonResponse<T> failed(IErrorCode errorCode) {
-        return new CommonResponse<T>(errorCode.getCode(), errorCode.getMessage(), null);
+    public static <T> CommonResult<T> failed(IErrorCode errorCode) {
+        return new CommonResult<T>(errorCode.getCode(), errorCode.getMessage(), null);
     }
 
     /**
@@ -57,29 +57,29 @@ public class CommonResponse<T> {
      * @param errorCode 错误码
      * @param message 错误信息
      */
-    public static <T> CommonResponse<T> failed(IErrorCode errorCode,String message) {
-        return new CommonResponse<T>(errorCode.getCode(), message, null);
+    public static <T> CommonResult<T> failed(IErrorCode errorCode, String message) {
+        return new CommonResult<T>(errorCode.getCode(), message, null);
     }
 
     /**
      * 失败返回结果
      * @param message 提示信息
      */
-    public static <T> CommonResponse<T> failed(String message) {
-        return new CommonResponse<T>(ResponseCode.FAILED.getCode(), message, null);
+    public static <T> CommonResult<T> failed(String message) {
+        return new CommonResult<T>(ResponseCode.FAILED.getCode(), message, null);
     }
 
     /**
      * 失败返回结果
      */
-    public static <T> CommonResponse<T> failed() {
+    public static <T> CommonResult<T> failed() {
         return failed(ResponseCode.FAILED);
     }
 
     /**
      * 参数验证失败返回结果
      */
-    public static <T> CommonResponse<T> validateFailed() {
+    public static <T> CommonResult<T> validateFailed() {
         return failed(ResponseCode.VALIDATE_FAILED);
     }
 
@@ -87,22 +87,22 @@ public class CommonResponse<T> {
      * 参数验证失败返回结果
      * @param message 提示信息
      */
-    public static <T> CommonResponse<T> validateFailed(String message) {
-        return new CommonResponse<T>(ResponseCode.VALIDATE_FAILED.getCode(), message, null);
+    public static <T> CommonResult<T> validateFailed(String message) {
+        return new CommonResult<T>(ResponseCode.VALIDATE_FAILED.getCode(), message, null);
     }
 
     /**
      * 未登录返回结果
      */
-    public static <T> CommonResponse<T> unauthorized(T data) {
-        return new CommonResponse<T>(ResponseCode.UNAUTHORIZED.getCode(), ResponseCode.UNAUTHORIZED.getMessage(), data);
+    public static <T> CommonResult<T> unauthorized(T data) {
+        return new CommonResult<T>(ResponseCode.UNAUTHORIZED.getCode(), ResponseCode.UNAUTHORIZED.getMessage(), data);
     }
 
     /**
      * 未授权返回结果
      */
-    public static <T> CommonResponse<T> forbidden(T data) {
-        return new CommonResponse<T>(ResponseCode.FORBIDDEN.getCode(), ResponseCode.FORBIDDEN.getMessage(), data);
+    public static <T> CommonResult<T> forbidden(T data) {
+        return new CommonResult<T>(ResponseCode.FORBIDDEN.getCode(), ResponseCode.FORBIDDEN.getMessage(), data);
     }
 
     public long getCode() {
