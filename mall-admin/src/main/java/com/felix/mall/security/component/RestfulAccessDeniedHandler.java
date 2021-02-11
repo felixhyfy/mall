@@ -1,7 +1,7 @@
 package com.felix.mall.security.component;
 
 import cn.hutool.json.JSONUtil;
-import com.felix.mall.response.CommonResponse;
+import com.felix.mall.response.CommonResult;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
@@ -27,7 +27,7 @@ public class RestfulAccessDeniedHandler implements AccessDeniedHandler {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         //将异常信息写入
-        response.getWriter().println(JSONUtil.parse(CommonResponse.forbidden(e.getMessage())));
+        response.getWriter().println(JSONUtil.parse(CommonResult.forbidden(e.getMessage())));
         //刷新
         response.getWriter().flush();
     }

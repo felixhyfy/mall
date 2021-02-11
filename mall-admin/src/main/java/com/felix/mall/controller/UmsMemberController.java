@@ -1,6 +1,6 @@
 package com.felix.mall.controller;
 
-import com.felix.mall.response.CommonResponse;
+import com.felix.mall.response.CommonResult;
 import com.felix.mall.service.UmsMemberService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -31,7 +31,7 @@ public class UmsMemberController {
     @ApiOperation("获取验证码")
     @RequestMapping(value = "/getAuthCode", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResponse getAuthCode(@RequestParam String telephone) {
+    public CommonResult getAuthCode(@RequestParam String telephone) {
         log.info("获取验证码，telephone={}", telephone);
         return memberService.generateAuthCode(telephone);
     }
@@ -39,8 +39,8 @@ public class UmsMemberController {
     @ApiOperation("判断验证码是否正确")
     @RequestMapping(value = "/verifyAuthCode", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResponse verifyAuthCode(@RequestParam String telephone,
-                                         @RequestParam String authCode) {
+    public CommonResult verifyAuthCode(@RequestParam String telephone,
+                                       @RequestParam String authCode) {
         log.info("进行验证码校验, telephone={}, authCode={}", telephone, authCode);
         return memberService.verifyAuthCode(telephone, authCode);
     }

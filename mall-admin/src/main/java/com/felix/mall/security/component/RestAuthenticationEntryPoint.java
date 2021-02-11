@@ -1,7 +1,7 @@
 package com.felix.mall.security.component;
 
 import cn.hutool.json.JSONUtil;
-import com.felix.mall.response.CommonResponse;
+import com.felix.mall.response.CommonResult;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -27,7 +27,7 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         //将异常信息写入
-        response.getWriter().println(JSONUtil.parse(CommonResponse.unauthorized(e.getMessage())));
+        response.getWriter().println(JSONUtil.parse(CommonResult.unauthorized(e.getMessage())));
         response.getWriter().flush();
     }
 }

@@ -1,6 +1,6 @@
 package com.felix.mall.service;
 
-import com.felix.mall.response.CommonResponse;
+import com.felix.mall.response.CommonResult;
 
 /**
  * @author Felix
@@ -16,7 +16,7 @@ public interface UmsMemberService {
      * @param telephone
      * @return
      */
-    CommonResponse generateAuthCode(String telephone);
+    CommonResult generateAuthCode(String telephone);
 
     /**
      * 判断验证码和手机号码是否匹配
@@ -24,5 +24,5 @@ public interface UmsMemberService {
      * @param authCode
      * @return
      */
-    CommonResponse verifyAuthCode(String telephone, String authCode);
+    CommonResult verifyAuthCode(String telephone, String authCode);
 }
